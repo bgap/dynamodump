@@ -637,8 +637,8 @@ def do_restore(dynamo, sleep_interval, source_table, destination_table, write_ca
     table_attribute_definitions = table["AttributeDefinitions"]
     table_table_name = destination_table
     table_key_schema = table["KeySchema"]
-    original_read_capacity = table["ProvisionedThroughput"]["ReadCapacityUnits"]
-    original_write_capacity = table["ProvisionedThroughput"]["WriteCapacityUnits"]
+    original_read_capacity = table["ProvisionedThroughput"]["ReadCapacityUnits"] if table["ProvisionedThroughput"]["ReadCapacityUnits"] else 1 
+    original_write_capacity = table["ProvisionedThroughput"]["WriteCapacityUnits"] if table["ProvisionedThroughput"]["WriteCapacityUnits"] else 1 
     table_local_secondary_indexes = table.get("LocalSecondaryIndexes")
     table_global_secondary_indexes = table.get("GlobalSecondaryIndexes")
 
